@@ -7,8 +7,6 @@ const bodyParser = require("body-parser");
 const app = express();
 PORT = 6000;
 
-console.log("testing out the git");
-
 connectDB();
 
 //middlewares
