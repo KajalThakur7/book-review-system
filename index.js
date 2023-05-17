@@ -6,7 +6,9 @@ const bodyParser = require("body-parser");
 const swaggerUi = require("swagger-ui-express");
 const YAML = require('yamljs');
 const swaggerDocument = YAML.load('./swagger.yaml')
-
+// const swaggerUi = require("swagger-ui-express");
+// const YAML = require('yamljs');
+// const swaggerDocument = YAML.load('./swagger.yaml')
 const cors = require("cors");
 
 const app = express();

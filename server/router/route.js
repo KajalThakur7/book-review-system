@@ -44,4 +44,5 @@ router.delete("/delete-rating/:id",requireUser, deleteRating);
 router.put("/edit-rating/:id", requireUser,updateRating)
 router.post('/get-average', getAverageRating)
 
+// router.post('/get-average', getAverageRating)
 module.exports = router;
