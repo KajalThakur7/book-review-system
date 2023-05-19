@@ -1,0 +1,307 @@
+openapi: "3.0.0"
+info:
+  title: "Book-Review-System API"
+  version: 1.0
+contact:
+  email: kajal@gmail.com
+liscence:
+  name: Apache 2.0
+  url: "http://apache.org/"
+servers:
+  - url: http://localhost:5000
+    description: Development server
+  - url: https://api.gigantic-server.com/v1
+    description: Production server
+
+components:
+  securitySchemes:
+    CookieAuth:
+        type: apiKey
+        in: cookie
+        name: token
+    BearerAuth: 
+        type: http
+        scheme: bearer
+
+paths:
+  /signup:
+    post:
+      summary: signup the user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                dateOfBirth:
+                  type: string
+                
+      responses:
+        '200':
+          description: Successful signup response
+
+  /login:
+    post:
+      summary: login the user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string    
+      responses:
+        '200':
+          description: Successful login response
+
+  /verify:
+    post:
+      summary: Verify the user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                otp:
+                  type: string    
+      responses:
+        '200':
+          description: Successful verify response
+
+
+  /addBooks:
+    post:
+      summary: Verify the user
+      security:
+      - BearerAuth: [] 
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string 
+                author_name:
+                  type: string    
+                       
+      responses:
+        '200':
+          description: Successful verify response
+
+  /update-book/{id}:
+    put:
+      summary: Verify the user
+      parameters:
+        - name: id
+          in: path
+          description: ID of the book to update
+          required: true
+      security:
+      - BearerAuth: [] 
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: integer
+              format: int64
+               properties:
+                 title:
+                   type: string
+                description:
+                   type: string 
+                author_name:
+                   type: string    
+                       
+      responses:
+        '200':
+          description: Successful verify response
+
+
+  /delete-book/{id}:
+    delete:
+      summary: Verify the user
+      parameters:
+        - name: id
+          in: path
+          description: ID of the book to update
+          required: true
+      security:
+      - BearerAuth: [] 
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: integer
+              format: int64
+             
+      responses:
+        '200':
+          description: Successful verify response
+
+  /addReview:
+    post:
+      summary: Verify the user
+      security:
+      - BearerAuth: [] 
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                book_id:
+                  type: string 
+                review:
+                  type: string    
+                       
+      responses:
+        '200':
+          description: Successful verify response
+
+  /edit-review/{id}:
+    put:
+      summary: Verify the user
+      parameters:
+        - name: id
+          in: path
+          description: ID of the book to update
+          required: true
+      security:
+      - BearerAuth: [] 
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: integer
+              format: int64
+               properties:
+                 user_id:
+                  type: string
+                book_id:
+                  type: string 
+                review:
+                  type: string    
+                       
+      responses:
+        '200':
+          description: Successful verify response
+
+  /delete-review/{id}:
+    delete:
+      summary: delete the review
+      parameters:
+        - name: id
+          in: path
+          description: ID of the book to update
+          required: true
+      security:
+      - BearerAuth: [] 
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: integer
+              format: int64
+             
+      responses:
+        '200':
+          description: Successful verify response
+
+  /add-rating:
+    post:
+      summary: Add the ratingr
+      security:
+      - BearerAuth: [] 
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                book_id:
+                  type: string 
+                rating:
+                  type: string    
+                       
+      responses:
+        '200':
+          description: Successful verify response
+
+  /edit-rating/{id}:
+    put:
+      summary: Verify the user
+      parameters:
+        - name: id
+          in: path
+          description: ID of the book to update
+          required: true
+      security:
+      - BearerAuth: [] 
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: integer
+              format: int64
+               properties:
+                rating:
+                  type: string    
+                       
+      responses:
+        '200':
+          description: Successful verify response
+
+  /delete-rating/{id}:
+    delete:
+      summary: delete the rating
+      parameters:
+        - name: id
+          in: path
+          description: ID of the book to update
+          required: true
+      security:
+      - BearerAuth: [] 
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: integer
+              format: int64
+             
+      responses:
+        '200':
+          description: Successful verify response
+
+
+  /get-average:
+    get:
+      summary: get average of rating 
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+                
+                       
+      responses:
+        '200':
+          description: Successful verify response
