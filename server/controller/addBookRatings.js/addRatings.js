@@ -1,6 +1,7 @@
 const rating = require("../../model/bookRatings");
 
 const addRating = async (req, res) => {
+ 
   const Rating = new rating({
     user_id: req.body.user_id,
     book_id: req.body.book_id,
@@ -16,5 +17,6 @@ const addRating = async (req, res) => {
     .catch((err) => {
       res.send("error" + err);
     });
-};
+  }
+
 module.exports = addRating;

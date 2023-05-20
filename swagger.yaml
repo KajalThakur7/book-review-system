@@ -10,8 +10,8 @@ liscence:
 servers:
   - url: http://localhost:5000
     description: Development server
-  - url: https://api.gigantic-server.com/v1
-    description: Production server
+  # - url: https://api.gigantic-server.com/v1
+  #   description: Production server
 
 components:
   securitySchemes:
@@ -26,21 +26,28 @@ components:
 paths:
   /signup:
     post:
-      summary: signup the user
+      summary: Signup the user
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                username:
-                  type: string
-                email:
-                  type: string
-                password:
-                  type: string
-                dateOfBirth:
-                  type: string
+               username:
+                required: true
+                type: string
+               email:
+                required: true
+                type: string
+               password:
+                required: true
+                type: string
+               dateOfBirth:
+                type: string
+                format: date
+               role:
+                type: string
+              
                 
       responses:
         '200':
@@ -83,7 +90,7 @@ paths:
 
   /addBooks:
     post:
-      summary: Verify the user
+      summary: Post Books
       security:
       - BearerAuth: [] 
       requestBody:
@@ -105,7 +112,7 @@ paths:
 
   /update-book/{id}:
     put:
-      summary: Verify the user
+      summary: Update books
       parameters:
         - name: id
           in: path
@@ -134,7 +141,7 @@ paths:
 
   /delete-book/{id}:
     delete:
-      summary: Verify the user
+      summary: Delete Books
       parameters:
         - name: id
           in: path
@@ -155,7 +162,7 @@ paths:
 
   /addReview:
     post:
-      summary: Verify the user
+      summary: Add review
       security:
       - BearerAuth: [] 
       requestBody:
@@ -177,7 +184,7 @@ paths:
 
   /edit-review/{id}:
     put:
-      summary: Verify the user
+      summary: Edit review
       parameters:
         - name: id
           in: path
@@ -205,7 +212,7 @@ paths:
 
   /delete-review/{id}:
     delete:
-      summary: delete the review
+      summary: Delete the review
       parameters:
         - name: id
           in: path
@@ -226,7 +233,7 @@ paths:
 
   /add-rating:
     post:
-      summary: Add the ratingr
+      summary: Add rating
       security:
       - BearerAuth: [] 
       requestBody:
@@ -248,7 +255,7 @@ paths:
 
   /edit-rating/{id}:
     put:
-      summary: Verify the user
+      summary: Edit rating
       parameters:
         - name: id
           in: path
@@ -272,7 +279,7 @@ paths:
 
   /delete-rating/{id}:
     delete:
-      summary: delete the rating
+      summary: Delete rating
       parameters:
         - name: id
           in: path
@@ -292,9 +299,9 @@ paths:
           description: Successful verify response
 
 
-  /get-average:
+  /average:
     get:
-      summary: get average of rating 
+      summary: To get average of ratings 
       requestBody:
         content:
           application/json:

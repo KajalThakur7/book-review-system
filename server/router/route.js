@@ -25,6 +25,9 @@ const addRating = require("../controller/addBookRatings.js/addRatings");
 const deleteRating = require("../controller/addBookRatings.js/deleteRating");
 const updateRating = require("../controller/addBookRatings.js/updateRating");
 const getAverageRating = require("../controller/addBookRatings.js/averageRating");
+const resetPassword = require("../controller/user/resetPassword");
+const verifyOTP = require("../controller/user/verifyReset");
+
 
 router.post("/signup", signup);
 router.post("/login", login);
@@ -42,7 +45,8 @@ router.post('/verify', verifyEmail)
 router.post('/add-rating',requireUser, addRating)
 router.delete("/delete-rating/:id",requireUser, deleteRating);
 router.put("/edit-rating/:id", requireUser,updateRating)
-router.post('/get-average', getAverageRating)
+router.get('/average', getAverageRating)
+router.post('/reset-Pass', resetPassword)
+router.post('/otp', verifyOTP)
 
-// router.post('/get-average', getAverageRating)
 module.exports = router;
